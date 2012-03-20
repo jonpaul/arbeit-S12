@@ -1,4 +1,4 @@
-This is the 2011 version of the Arbeit project using Rails 3.  It was originally conceived as an excuse to play around with the awesome Chronic gem and requires this gem to run.  It is currently being used to demonstrate some mulit-model forms as well as use of jQuery.  It is a work in progress and additional features will be added over the next week or so.
+This is the 2012 version of the Arbeit project using Rails 3.  It was originally conceived as an excuse to play around with the awesome Chronic gem and requires this gem to run.  It is currently being used to demonstrate some mulit-model forms as well as use of jQuery.  It is a work in progress and additional features will be added over the next week or so.
 
 It does have its own populate file, so after migrating the database, you can simply run 'rake db:populate' to add fake (but somewhat realistic) data.
 
