@@ -1,0 +1,30 @@
+<h3>Pending Tasks:</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Task</th>
+			<th>Project</th>
+			<th>Due Date</th>
+			<th>Priority</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pending_tasks.each do |task| %>
+			<% if can? :read, task %>
+	      <tr>
+	        <td><%= link_to task.name, task_path(task) %></td>
+					<td><%= link_to task.project.name, project_path(task.project) %></td>
+	        <td><%= task.due_on.strftime("%m/%d/%y") %></td>
+					<td><%= raw(priority_label(task.priority)) %></td>
+	        <td>
+	          <%= link_to raw("<i class='icon-ok icon-white'></i> Complete Task"), edit_task_path(task, :status => 'completed'), :class => 'btn btn-mini btn-info' %>
+	          <%= link_to raw("<i class='icon-trash icon-white'></i> Remove"), task_path(task), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+	        </td>
+	      </tr>
+			<% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @pending_tasks, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

@@ -1,0 +1,8 @@
+<div class="well">
+	<h3><%= pluralize @created_tasks.size, 'Task' %> Created:</h3>
+	<ul>
+		<% @created_tasks.each do |task| %>
+			<li><%= link_to task.name, task_path(task) %>&nbsp;&nbsp;(<%= task.project.name %> - <%= task.created_at.strftime("%m/%d") %>)</li>
+		<% end %>
+	</ul>
+</div>

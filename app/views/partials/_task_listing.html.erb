@@ -1,0 +1,25 @@
+<table class="datagrid">
+  <thead class="datagrid">
+    <th width="200">Title</th>
+    <th width="70" align="center">Date</th>
+	<th width="70" align="center">Time</th>
+    <th width="70" align="center">Priority</th>
+	<th width="90">&nbsp;</th>
+  </thead>
+  
+<% for task in @tasks %>
+  <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+    <td>&nbsp;<%= link_to truncate(task.name,17), task_path(task)  %></td>
+    <td align="center"><%= task.due_on.strftime("%m/%d") %></td>
+	<td align="center"><%= task.due_on.strftime("%I:%M %p") %></td>
+    <td align="center"><%= get_priority_name(task.priority) %></td>
+    <td align="center">
+    	<%= link_to(image_tag("/images/icons/edit_dg.gif", :border => 0), edit_task_path(task))  %>&nbsp;
+    	<%= link_to(image_tag("/images/icons/close.gif", :border => 0), task_path(task), :confirm => 'Are you sure you wish to delete this information?', :method => :delete) %>
+	</td>
+  </tr>
+<% end %>
+</table>
+<p class="supertiny">&nbsp;</p>
+<span class="smtext"><%= will_paginate @tasks %></span>
+<p class="supertiny">&nbsp;</p>

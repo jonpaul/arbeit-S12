@@ -1,0 +1,37 @@
+<h3>Project Assignments</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project_assignments.each do |assignment| %>
+      <tr>
+        <td>
+					<%= link_to assignment.user.proper_name, user_path(assignment.user) %>
+					<% if !assignment.active %>
+						<span class="label label-warning">Inactive</span>
+					<% end %>
+				</td>
+        <td>
+					<% if assignment.active %>
+						<%= link_to raw("<i class='icon-user icon-white'></i> Make Inactive"), edit_assignment_path(assignment, :status => 'deactivate_prj'), :class => 'btn btn-mini btn-warning' %>
+					<% else %>
+						<%= link_to raw("<i class='icon-user icon-white'></i> Make Active&nbsp;&nbsp;"), edit_assignment_path(assignment, :status => 'activate_prj'), :class => 'btn btn-mini btn-info' %>
+					<% end %>
+					<%= link_to raw("<i class='icon-trash icon-white'></i> Destroy Assignment"), assignment_path(assignment), :method => 'delete', :confirm => "Are you sure you want to destroy this assignment?", :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+		<tr>
+			<td><%= link_to raw("<i class='icon-plus icon-white'></i> Add New Person"), new_assignment_path(:id => @project.id), :class => 'btn btn-small btn-primary' %></td>
+			<td>&nbsp;</td>
+		</tr>
+  </tbody>
+</table>
+<%= will_paginate @project_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+
+<%# link_to 'Assign New Person', new_assignment_path(:id => @project.id), :class => 'btn btn-small btn-primary' %>

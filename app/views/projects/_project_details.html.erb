@@ -1,0 +1,23 @@
+<h2>Project: <%= @project.name %> &nbsp;&nbsp;<%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_project_path(@project), :class => 'btn btn-mini' %></h2><br>
+
+<p>
+  <b>Manager</b>: <%= @project.manager.proper_name %>
+</p>
+
+<p>
+  <b>Project dates</b>: 
+	<%= @project.start_date.strftime("%B %d, %Y") %> - 
+	<%= @project.end_date.strftime("%B %d, %Y") unless @project.end_date.nil? %> 
+	<% if @project.is_active %>
+		&nbsp;&nbsp;<em>(expected)</em>
+	<% end %>
+</p>
+
+<p>
+  <b>Description</b>:<br>
+  <%= @project.description %>
+</p>
+
+<p>
+  <b>Domain</b>: <%= @project.domain.name %>
+</p>

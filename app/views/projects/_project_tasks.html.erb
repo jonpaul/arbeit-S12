@@ -1,0 +1,24 @@
+<h3>Project Tasks</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+			<th>Done</th>
+      <th>Name</th>
+      <th>Due Date</th>
+			<th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project_tasks.each do |task| %>
+      <tr>
+				<td><%= link_to(raw("<i class='icon-ok icon-white'></i>"), edit_task_path(task, :status => 'completed', :from => 'project'), :class => 'btn btn-mini btn-info') unless task.status == 'Completed' %></td>
+        <td><%= link_to task.name, task_path(task) %></td>
+				<td><%= task.due_on.strftime("%m/%d/%y") %></td>
+        <td><%= raw(task_label(task.status)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @project_tasks, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+<%= link_to raw("<i class='icon-plus icon-white'></i> Add New Task"), new_task_path(:project_id => @project.id), :class => 'btn btn-small btn-primary' %>

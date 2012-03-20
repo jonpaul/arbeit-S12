@@ -1,0 +1,14 @@
+<%= simple_form_for @assignment, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Assignment</legend>
+
+		<%= f.input :project_id, :collection => Project.current.alphabetical, :include_blank => true %>
+		<%= f.input :user_id, :collection => User.active.alphabetical, :include_blank => true %>
+    <%= f.input :active %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', assignments_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

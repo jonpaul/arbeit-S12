@@ -1,0 +1,6 @@
+<div class="project_item">
+	<p>
+		<span class="smtext"><strong><%= link_to(project_item.name, project_path(project_item)) %></strong></span><br>
+		<span class="smtext"><%= raw(truncate(project_item.description, :length => 100, :omission => (link_to "...(more)", project_item))) %></span>
+	</p>
+</div>

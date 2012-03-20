@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="span8">
+		<%= render :partial => "user_details" %>
+	</div>
+	<div class="span4">
+		<%= render :partial => "created_tasks" unless @created_tasks.empty?%>
+		<%= render :partial => "completed_tasks" unless @completed_tasks.empty? %>
+	</div>
+</div>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-th-list'></i> Display All Users"), users_path, :class => 'btn'  %>&nbsp;&nbsp;
+  <%= link_to raw("<i class='icon-pencil'></i> Edit #{@user.proper_name}"), edit_user_path(@user), :class => 'btn' %>&nbsp;&nbsp;
+  <%= link_to raw("<i class='icon-trash icon-white'></i> Delete #{@user.proper_name}"), user_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

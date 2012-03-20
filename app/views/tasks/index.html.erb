@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="span8">
+		<% if @pending_tasks.empty? %>
+			<h3>No Pending Tasks</h3>
+		<% else %>
+			<%= render :partial => "pending_tasks" %>
+		<% end %>
+	</div>
+	<div class="span4">
+		<%= render :partial => "completed_tasks" unless @completed_tasks.empty? %>
+	</div>
+</div>
+
+<%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Task"), new_task_path, :class => 'btn btn-primary' %>
+

@@ -1,0 +1,18 @@
+<div class="completed_task">
+	<p>
+		<div class="tl_name">
+			<span class="smtext">
+				<%= link_to(completed_task.name, task_path(completed_task)) %><br />
+				<em>(<%= completed_task.project.name %>)</em>
+			</span>
+		</div>
+		<div class="tl_date">
+			<span class="smtext"><%= completed_task.due_on.strftime("%b %d") %></span>
+		</div>
+		<div class="tl_controls">
+			<%= link_to(image_tag("/images/icons/check_green.gif", :border => 0), incomplete_path(task_item.id), :method => :put) %>
+			&nbsp;
+			<%= link_to(image_tag("/images/icons/close.gif", :border => 0), task_path(task_item), :method => :delete, :confirm => 'Delete this task?') %>
+		</div>
+	</p>
+</div>

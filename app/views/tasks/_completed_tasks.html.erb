@@ -1,0 +1,10 @@
+<div class="well">
+	<h3>Recently Completed:</h3>
+	<ul>
+		<% @completed_tasks.each do |task| %>
+			<% if can? :read, task %>
+				<li><%= link_to task.name, task_path(task) %>&nbsp;&nbsp;(<%= task.project.name %> - <%= task.updated_at.strftime("%m/%d") %>)</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>

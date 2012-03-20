@@ -1,0 +1,34 @@
+<h2>Task Details</h2>
+
+<h3>
+  <b>Name</b>: <%= @task.name %>
+</h3><br>
+
+<p>
+  <b>Project</b>: <%= link_to @task.project.name, project_path(@task.project) %>
+</p>
+
+<p>
+  <b>Due on</b>: <%= @task.due_on.strftime("%B %d, %Y") %>
+</p>
+
+<p>
+  <b>Priority</b>: <%= raw(priority_label(@task.priority)) %>
+</p>
+
+<% unless @task.creator.nil? %>
+	<p>
+	  <b>Created by</b>: <%= link_to @task.creator.name, user_path(@task.creator) %>
+	</p>
+<% end %>
+
+<p>
+  <b>Completed</b>: <%= @task.completed ? "Yes" : "No" %>
+</p>
+
+<% unless @task.completer.nil?  %>
+	<p>
+	  <b>Completed by:</b> <%= link_to @task.completer.name, user_path(@task.completer) %>
+	</p>
+<% end %>
+

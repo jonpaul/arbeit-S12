@@ -1,0 +1,19 @@
+<div class="<%= get_priority_class(task_item.priority)  %>">
+	<p>
+		<div class="tl_name">
+			<span class="smtext">
+				<%= link_to(task_item.name, task_path(task_item)) %><br />
+				<em>(<%= task_item.project.name %>)</em>
+			</span>
+		</div>
+		<div class="tl_date">
+			<span class="smtext"><%= task_item.due_on.strftime("%b %d") %></span>
+		</div>
+		<div class="tl_controls">
+			<%= link_to(image_tag("/images/icons/check_green.gif", :border => 0), complete_path(task_item.id), :method => :put) %>
+			&nbsp;
+			<%= link_to(image_tag("/images/icons/close.gif", :border => 0), task_path(task_item), :method => :delete, :confirm => 'Delete this task?') %>
+		</div>
+	</p>
+</div>
+

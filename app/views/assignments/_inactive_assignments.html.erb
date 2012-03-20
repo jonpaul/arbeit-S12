@@ -1,0 +1,25 @@
+<% if @inactive_assignments.empty? %>
+	<p><em>There are no inactive assignments at this time.</em></p>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Project</th>
+			<th>Person</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inactive_assignments.each do |assignment| %>
+      <tr>
+        <td><%= link_to assignment.project.name, project_path(assignment.project) %></td>
+        <td><%= link_to assignment.user.name, user_path(assignment.user) %></td>
+        <td>
+          <%= link_to raw("<i class='icon-user icon-white'></i> Make Active	"), edit_assignment_path(assignment, :status => 'activate_asgn'), :class => 'btn btn-mini btn-info' %>
+					<%= link_to raw("<i class='icon-trash icon-white'></i> Remove"), assignment_path(assignment), :method => 'delete', :confirm => "Are you sure you want to destroy this assignment?", :class => 'btn btn-mini btn-danger' %>        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @inactive_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next"  %>	
+<% end %>

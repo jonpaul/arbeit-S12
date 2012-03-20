@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+			<th>End Date</th>
+			<th class="centered">Assigned</th>
+      <th class="centered">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @current_projects.each do |project| %>
+			<% if can? :read, project %>
+	      <tr>
+	        <td><%= link_to project.name, project_path(project) %></td>
+					<td><%= project.start_date.strftime("%b %d, %Y") %></td>
+	        <td><%= project.end_date.strftime("%b %d, %Y") %></td>
+					<td class="centered"><%= project.assignments.active.size %></td>
+	        <td>
+						<%= link_to raw("<i class='icon-user icon-white'></i> Assign Person"), new_assignment_path(:id => project.id, :source => 'project'), :class => 'btn btn-mini btn-info' %>
+						<%= link_to raw("<i class='icon-remove icon-white'></i> End Project"), edit_project_path(project, :status => 'end'), :confirm => "Are you sure you want to end the #{project.name} project today?", :class => 'btn btn-mini btn-danger' %>
+					</td>
+	      </tr>
+			<% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @current_projects, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>	
+

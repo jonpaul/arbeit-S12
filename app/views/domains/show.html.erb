@@ -1,0 +1,14 @@
+
+<h3>
+  Domain: <%= @domain.name %>
+</h3>
+<br />
+<p>
+  <b>Active:</b> <%= @domain.active ? "Yes" : "No" %>
+</p>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-th-list'></i> Display All Domains"), domains_path, :class => 'btn'  %>
+  <%= link_to raw("<i class='icon-pencil'></i> Edit This Domain"), edit_domain_path(@domain), :class => 'btn' %>
+  <%= link_to raw("<i class='icon-trash icon-white'></i> Delete Domain"), domain_path(@domain), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

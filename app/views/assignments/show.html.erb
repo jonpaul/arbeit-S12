@@ -1,0 +1,20 @@
+<h2>Assignment</h2><br>
+
+<p>
+  <b>Project</b>: <%= @assignment.project.name %>
+</p>
+
+<p>
+  <b>User</b>: <%= @assignment.user.proper_name %>
+</p>
+
+<p>
+  <b>Active</b>: <%= @assignment.active ? "Yes" : "No" %>
+</p>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-th-list'></i> Display All Assignments"), assignments_path, :class => 'btn'  %>&nbsp;&nbsp;
+  <%= link_to raw("<i class='icon-pencil'></i> Edit This Assignment"), edit_assignment_path(@assignment), :class => 'btn' %>&nbsp;&nbsp;
+  <%= link_to raw("<i class='icon-trash icon-white'></i> Delete Assignment"), assignment_path(@assignment), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>
+

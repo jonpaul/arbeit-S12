@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="span8">
+		<%= render :partial => "project_details" %>
+		<br />
+		<%= render :partial => "project_assignments" unless @project_assignments.empty? %>
+	</div>
+	<div class="span4">
+		<%= render :partial => "project_tasks" unless @project_tasks.empty? %>
+	</div>
+</div>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-th-list'></i> Display All Projects"), projects_path, :class => 'btn'  %>&nbsp;&nbsp;
+  <%= link_to raw("<i class='icon-pencil'></i> Edit #{@project.name}"), edit_project_path(@project), :class => 'btn' %>&nbsp;&nbsp;
+  <%= link_to raw("<i class='icon-trash icon-white'></i> Delete #{@project.name}"), project_path(@project), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,24 @@
+<h2>Domains</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @domains.each do |domain| %>
+      <tr>
+        <td><%= link_to domain.name, domain_path(domain) %></td>
+        <td><%= domain.active ? "Yes" : "No" %></td>
+        <td>
+          <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_domain_path(domain), :class => 'btn btn-mini' %>
+          <%= link_to raw("<i class='icon-trash icon-white'></i> Destroy"), domain_path(domain), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Domain"), new_domain_path, :class => 'btn btn-primary' %>

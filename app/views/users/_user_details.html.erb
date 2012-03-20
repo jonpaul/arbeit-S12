@@ -1,0 +1,26 @@
+<h2>User Details</h2>
+
+<h3>
+  <b>Name</b>: <%= @user.proper_name %>
+</h3><br>
+
+<p>
+  <b>Email</b>: <%= mail_to @user.email, @user.email %>
+</p>
+
+<p><b>Current Assignments:</b>
+	<ul>
+		<% @user_assignments.each do |assignment| %>
+			<li><%= link_to assignment.project.name, project_path(assignment.project) %></li>
+		<% end %>
+	</ul>
+</p>
+
+
+<p>
+  <b>Role</b>: <%= @user.role.capitalize %>
+</p>
+
+<p>
+  <b>Active</b>: <%= @user.active ? "Yes" : "No" %>
+</p>

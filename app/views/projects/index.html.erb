@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="span8">
+		<h3>Current Projects:</h3>
+		<%= render :partial => "current_projects" %>
+	</div>
+	<div class="span4">
+		<%= render :partial => "past_projects" unless @past_projects.empty? %>
+	</div>
+</div>
+
+<%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Project"), new_project_path, :class => 'btn btn-primary' %>
