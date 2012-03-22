@@ -1,0 +1,6 @@
+<%= f.input :name %>
+<%= f.input :manager_id, :collection => User.active.alphabetical, :include_blank => true %>
+<%= f.input :start_date, :label => "Start Date", :as => :string, :input_html => {:class => "datepicker"} %>		
+<%= f.input :end_date, :label => "End Date", :as => :string, :input_html => {:class => "datepicker"} %>
+<%= f.input :domain_id, :collection => Domain.active.alphabetical, :include_blank => true %>
+<%= f.input :description, :input_html => { :rows => 4 } %>

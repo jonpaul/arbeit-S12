@@ -1,0 +1,9 @@
+<div class="fields">
+	<div class="min_task">
+			<%= f.link_to_remove(image_tag("/images/icons/close.gif", :border => 0)) %>
+			<%= f.input :name, :label => "Task" %>
+			<%= f.input :due_string, :label => "Due" %>
+			<%= f.input :priority, :collection => Task::PRIORITY_LIST %>
+			<%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.id } %>
+	</div>
+</div>

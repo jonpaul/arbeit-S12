@@ -1,1 +1,32 @@
-<%= render :partial => 'form' %>
+<%= simple_nested_form_for @project, :html => { :class => 'form-horizontal' } do |project_form| %>
+	<div class="row">
+		<div class="span8">
+			<fieldset>
+		    <legend><%= controller.action_name.capitalize %> Project</legend>
+					<%= render "project_fields", :f => project_form %>
+				<!-- <div class="form-actions">
+		      <%# project_form.submit nil, :class => 'btn btn-primary' %>
+		      <%# link_to 'Cancel', projects_path, :class => 'btn' %>
+		    </div> -->
+		  </fieldset>
+		</div>
+		<div class="span4">
+			<legend>Add some tasks to this project</legend>
+			<div id="project_tasks">
+				
+				<%= project_form.simple_fields_for :tasks do |task_form| %>
+					<%= render "task_fields", :f => task_form %>
+				<% end %> <!-- end of one tasks form -->
+				<p>
+					<%# project_form.link_to_add "Add Task", :tasks %>
+					<%= project_form.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Task"), :tasks, :class => 'btn btn-mini btn-primary') %>
+				</p>
+				
+			</div> <!-- end of project_tasks div -->
+		</div>
+	</div>
+	<div class="form-actions">
+    <%= project_form.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', projects_path, :class => 'btn' %>
+  </div>
+<% end %>

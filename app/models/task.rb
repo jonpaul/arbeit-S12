@@ -35,8 +35,8 @@ class Task < ActiveRecord::Base
   # Validations
   validates_presence_of :name
   validates_inclusion_of :priority, :in => [1,2,3,4], :message => "is not included in the list of allowed priority levels"
-  validates_datetime :due_on
-  # validate :date_string_is_proper_date
+  validates_datetime :due_on, :on => :update
+  validate :date_string_is_proper_date
   # validate :date_is_in_future, :on => :create  ## CAN'T USE THIS WITH POPULATE SCRIPT
   
   # Callback
@@ -50,21 +50,21 @@ class Task < ActiveRecord::Base
     self.due_on = date
   end
   
-  # def date_string_is_proper_date
-  #   return true unless self.new_record?  # only run this for insert, not update
-  #   begin
-  #     date = Chronic.parse(self.due_string)
-  #     if date.nil?
-  #       self.errors.add :due_string, "was not a proper date: #{due_string}"
-  #     else
-  #       self.due_on = date
-  #     end
-  #   rescue
-  #     # in case something bizzare happens with chronic...
-  #     self.errors.add :due_string, "was not a proper date"
-  #   end
-  # end
-  # 
+  def date_string_is_proper_date
+    return true unless self.new_record?  # only run this for insert, not update
+    begin
+      date = Chronic.parse(self.due_string)
+      if date.nil?
+        self.errors.add :due_string, "was not a proper date: #{due_string}"
+      else
+        self.due_on = date
+      end
+    rescue
+      # in case something bizzare happens with chronic...
+      self.errors.add :due_string, "was not a proper date"
+    end
+  end
+  
   # def date_is_in_future
   #   return true if self.due_on.nil? # skip this validation if due_on not properly set
   #   self.errors.add :due_on, "needs to be in the future" unless self.due_on.future?

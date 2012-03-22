@@ -73,6 +73,35 @@ select.date { width: 90px; }
 	text-align: center;
 }
 
+// Setting up min_task divs
+.min_task {
+	background-color: #d1ecfb;
+	/*width: 400px;*/
+	padding: 2px 2px 2px 5px;
+	border: 1px solid blue;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	select { width: 185px; }
+	input { width: 180px; }
+}
+
+// Cutting back the spacing on simple_form...
+.form-horizontal .min_task .control-label {
+    float: left;
+    padding-top: 3px;
+    text-align: right;
+    width: 60px;
+		font-size: 90%;
+}
+.form-horizontal .min_task .controls {
+    margin-left: 70px;
+		width: 160px;
+}
+
+
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
