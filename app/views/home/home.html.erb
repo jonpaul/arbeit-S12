@@ -1,7 +1,7 @@
-<%# if logged_in? %>
-	<%# render :partial => 'personal_home' %>
-<%# else %>
-	<%# render :partial => 'general_home' %>
-<%# end %>
+<% if logged_in? %>
+	<%= render :partial => 'personal_home' %>
+<% else %>
+	<%= render :partial => 'general_home' %>
+<% end %>
 
-<%= render :partial => 'general_home' %>
+<%# render :partial => 'general_home' %>

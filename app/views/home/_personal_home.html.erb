@@ -1,4 +1,4 @@
-<h2>Welcome back, <%= current_user.name %></h2>
+<h2>Welcome back, <%= current_user.proper_name %></h2>
 
 <p>Below is information on your projects and incomplete tasks for those projects:</p>
 
@@ -19,7 +19,7 @@
 		<td>
 			<h3><span id="task_title">Incomplete Tasks</span>  &nbsp;&nbsp;<span class="add_link"><%= link_to "[add new task]", new_task_path %></span></h3>
 			<%# @tasks = get_my_incomplete_tasks(current_user.id) %>
-			<% if @incomplete_tasks.blank? %>
+			<% if @incomplete_tasks.empty? %>
 				<p>You have no incomplete tasks at this time.</p>
 			<% else %>
 				<div id="display_tasks">

@@ -12,3 +12,111 @@
  *= require_tree .
  *= require jquery-ui
 */
+
+.completed_task {
+	background-color: #B1FBB8;
+	width: 400px;
+	padding-left: 10px;
+	border: 1px solid #008040;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	height: 60px;
+	color: #008040;
+}
+.completed_task a {
+	color: #008040;
+}
+.completed_task .smtext {
+	color: #008040;
+}
+
+.high_priority {
+	background-color: #e7aaa0;
+	width: 400px;
+	padding-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	border: 1px solid red;
+	height: 60px;
+}
+
+.low_priority {
+	background-color: #f9fda5;
+	width: 400px;
+	padding-left: 10px;
+	border: 2px solid yellow;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	height: 60px;
+}
+
+.med_priority {
+	background-color: #FAB38C;
+	width: 400px;
+	padding-left: 10px;
+	border: 2px solid orange;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	height: 60px;
+}
+
+.high_priority a {
+	color: #800000;
+}
+.high_priority .smtext {
+	color: #800000;
+}
+
+.low_priority a {
+	color: #C36100;
+}
+.low_priority .smtext {
+	color: #C36100;
+}
+
+.med_priority a {
+	color: #D56B00;
+}
+.med_priority .smtext {
+	color: #D56B00;
+}
+
+.tl_name {
+	width: 225px;
+	display: block;
+	position: absolute;
+}
+
+.tl_date {
+	width: 65px;
+	display: block;
+	position: absolute;
+	margin-left: 250px;
+}
+
+.tl_controls {
+	width:  68px;
+	display: block;
+	margin-left: 330px;
+}
+
+.project_item {
+	background-color: #d1ecfb;
+	width: 400px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid blue;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.supertiny {
+	font-size:5px;
+	text-decoration:none;
+}
+
+.add_link {
+	font-size:75%;
+	font-style: normal;
+	font-weight: normal;
+}
