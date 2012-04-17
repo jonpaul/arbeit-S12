@@ -77,4 +77,37 @@ class TasksController < ApplicationController
     flash[:notice] = "Successfully removed #{@task.name} from Arbeit."
     redirect_to tasks_url
   end
+  
+  # ===================================
+  # Two new methods to handle changing completed field
+  def complete
+    @task = Task.find(params[:id])
+    # set completed and completed_by fields
+    @task.completed = true
+    @task.completed_by = current_user.id
+
+    if @task.save!
+      flash[:notice] = 'Task was marked as completed.'
+      if params[:status] == "task_details"
+        redirect_to task_path(@task)
+      else
+        redirect_to home_path
+      end
+    else
+      render :action => "edit"
+    end
+  end
+
+  def incomplete
+    @task = Task.find(params[:id])
+    @task.completed = false
+    @task.completed_by = nil
+
+    if @task.save!
+      flash[:notice] = 'Task was changed back to incomplete.'
+      redirect_to task_path(@task)
+    else
+      render :action => "edit"
+    end
+  end
 end

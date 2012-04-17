@@ -18,17 +18,22 @@
 
 <% unless @task.creator.nil? %>
 	<p>
-	  <b>Created by</b>: <%= link_to @task.creator.name, user_path(@task.creator) %>
+	  <b>Created by</b>: <%= link_to @task.creator.proper_name, user_path(@task.creator) %>
 	</p>
 <% end %>
 
 <p>
-  <b>Completed</b>: <%= @task.completed ? "Yes" : "No" %>
+  <b>Completed</b>: <%= @task.completed ? "Yes" : "No" %>&nbsp;&nbsp;&nbsp;
+	<% if @task.completed %>
+    <%= link_to raw("<i class='icon-trash icon-white'></i> Change to incomplete"), incomplete_path(@task.id), :class => 'btn btn-mini btn-warning' %>
+	<% else %>
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Complete Task"), complete_path(@task.id, :status => 'task_details'), :class => 'btn btn-mini btn-info' %>
+	<% end %>
 </p>
 
 <% unless @task.completer.nil?  %>
 	<p>
-	  <b>Completed by:</b> <%= link_to @task.completer.name, user_path(@task.completer) %>
+	  <b>Completed by:</b> <%= link_to @task.completer.proper_name, user_path(@task.completer) %>
 	</p>
 <% end %>
 

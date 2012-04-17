@@ -6,7 +6,6 @@
 	<tr valign="top">
 		<td>
 			<h3>My Projects &nbsp;&nbsp;<span class="add_link"><%= link_to "[add new project]", new_project_path %></span></h3>
-			<%# @projects = get_my_projects(current_user.id) %>
 			<% if @projects.nil? || @projects.empty? %>
 				<p>You have no projects at this time</p>
 			<% else %>
@@ -18,7 +17,6 @@
 		<td width="50">&nbsp;</td>
 		<td>
 			<h3><span id="task_title">Incomplete Tasks</span>  &nbsp;&nbsp;<span class="add_link"><%= link_to "[add new task]", new_task_path %></span></h3>
-			<%# @tasks = get_my_incomplete_tasks(current_user.id) %>
 			<% if @incomplete_tasks.empty? %>
 				<p>You have no incomplete tasks at this time.</p>
 			<% else %>
