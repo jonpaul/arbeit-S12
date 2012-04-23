@@ -36,33 +36,18 @@ class Task < ActiveRecord::Base
   validates_presence_of :name
   validates_inclusion_of :priority, :in => [1,2,3,4], :message => "is not included in the list of allowed priority levels"
   validates_datetime :due_on, :on => :update
-  validate :date_string_is_proper_date
   # validate :date_is_in_future, :on => :create  ## CAN'T USE THIS WITH POPULATE SCRIPT
   
   # Callback
-  # before_validation :set_due_on_from_string
+  before_validation :set_due_on_from_string
   
   def set_due_on_from_string
+    return true if self.due_string.nil?
     date = Chronic.parse(self.due_string)
     if date.nil?
       self.errors.add :due_string, "was not a proper date: #{self.due_string}"
     end
     self.due_on = date
-  end
-  
-  def date_string_is_proper_date
-    return true unless self.new_record?  # only run this for insert, not update
-    begin
-      date = Chronic.parse(self.due_string)
-      if date.nil?
-        self.errors.add :due_string, "was not a proper date: #{due_string}"
-      else
-        self.due_on = date
-      end
-    rescue
-      # in case something bizzare happens with chronic...
-      self.errors.add :due_string, "was not a proper date"
-    end
   end
   
   # def date_is_in_future

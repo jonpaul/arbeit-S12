@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   
   # Scopes
   scope :alphabetical,  order("name")
-  scope :current,       where("start_date < ? and end_date > ?", Time.now.to_date, Time.now.to_date)
+  scope :current,       where("start_date <= ? and end_date > ?", Time.now.to_date, Time.now.to_date)
   scope :past,          where("end_date < ?", Time.now)
   scope :for_name,      lambda { |name| where("name LIKE ?", name + "%") }
   scope :for_user,      lambda { |user_id| joins(:assignments).where('user_id = ?', user_id) }
@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
   
   # Other methods
   def is_active
-    (start_date < Time.now.to_date) && (end_date > Time.now.to_date)
+    (start_date <= Time.now.to_date) && (end_date > Time.now.to_date)
   end
   
   private
